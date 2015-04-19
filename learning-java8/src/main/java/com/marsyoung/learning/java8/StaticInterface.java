@@ -7,4 +7,5 @@ public interface StaticInterface {
 	default void sayhello(){
 		System.out.println("hello");
 	}
+	
 }
