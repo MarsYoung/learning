@@ -8,6 +8,6 @@ public class BigString {
 			s=s+"x";
 		}
 		System.out.println(s);
-		System.out.println(2e2==200);
+		//System.out.println(2e2==200);
 	}
 }
