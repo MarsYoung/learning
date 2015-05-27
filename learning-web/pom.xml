@@ -14,6 +14,9 @@
 	<modules>
 		<module>learning-web-ssb</module>
     <module>learning-web-springmvc</module>
+    <module>learning-web-ssh</module>
+    <module>learning-web-rest-jersey-resteasy</module>
+    <module>learning-web-rest-jboss-resteasy</module>
   </modules>
 	
 	
