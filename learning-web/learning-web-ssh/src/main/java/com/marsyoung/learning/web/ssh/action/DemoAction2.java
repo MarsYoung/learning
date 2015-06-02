@@ -1,4 +1,4 @@
-package com.marsyoung.learning.web.ssb.action;
+package com.marsyoung.learning.web.ssh.action;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;

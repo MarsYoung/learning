@@ -1,4 +1,4 @@
-package com.marsyoung.learning.web.ssb.action;
+package com.marsyoung.learning.web.ssh.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 
-import com.marsyoung.learning.web.ssb.entity.User;
-import com.marsyoung.learning.web.ssb.service.UserService;
+import com.marsyoung.learning.web.ssh.entity.User;
+import com.marsyoung.learning.web.ssh.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**

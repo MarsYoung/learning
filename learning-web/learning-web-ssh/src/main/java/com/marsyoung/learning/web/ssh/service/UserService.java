@@ -1,6 +1,6 @@
-package com.marsyoung.learning.web.ssb.service;
+package com.marsyoung.learning.web.ssh.service;
 
-import com.marsyoung.learning.web.ssb.entity.User;
+import com.marsyoung.learning.web.ssh.entity.User;
 
 public interface UserService {
 

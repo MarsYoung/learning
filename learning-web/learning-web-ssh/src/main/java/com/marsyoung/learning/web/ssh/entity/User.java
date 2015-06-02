@@ -1,4 +1,4 @@
-package com.marsyoung.learning.web.ssb.entity;
+package com.marsyoung.learning.web.ssh.entity;
 
 public class User {
 
