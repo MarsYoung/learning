@@ -1,6 +1,9 @@
 package com.marsyoung.learning.web.ssb.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 
 import com.marsyoung.learning.web.ssb.entity.User;
@@ -16,6 +19,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * 
  */
 @Controller
+@Scope("prototype")
 public class DemoAction1 extends ActionSupport{
 
 	private static final long serialVersionUID = 524844259348767473L;
@@ -26,15 +30,15 @@ public class DemoAction1 extends ActionSupport{
 	public User user;
 	public String resp;
 	
-	
-	
-	
 	public String addUser(){
 		if(user==null){
+			resp="用户为空";
 			return INPUT;
 		}else{
+			resp="添加成功";
 			userService.addUser(user);
 		}
+		
 		return SUCCESS;
 	}
 	
@@ -75,4 +79,13 @@ public class DemoAction1 extends ActionSupport{
 		return user;
 	}
 	
+	
+	public static void main(String[] args) {
+		ApplicationContext appContext=new ClassPathXmlApplicationContext(new String[]{"spring.xml"});
+		DemoAction1 demoAction1=appContext.getBean("demoAction1",DemoAction1.class);
+		User user=new User();
+		user.setUsername("marsyoung");
+		demoAction1.setUser(user);
+		System.out.println(demoAction1.getUser().getUsername());
+	}
 }

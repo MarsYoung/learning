@@ -1,5 +1,6 @@
 package com.marsyoung.learning.web.ssb.action;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -12,14 +13,15 @@ import org.springframework.stereotype.Controller;
  * 
  */
 @Controller
+@Scope("prototype")
 public class DemoAction3 {
 
 	public DemoAction3() {
 		super();
 	}
 
-	public void excute() {
-
+	public void execute() {
+		System.out.println("hello");
 	}
 
 }
