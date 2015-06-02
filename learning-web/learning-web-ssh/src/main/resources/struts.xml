@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts PUBLIC   
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"   
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- <constant name="struts.devMode" value="true" /> -->
+	<constant name="struts.multipart.maxSize" value="2000000000"/>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<!-- 基类package，定义了所有action共用的拦截器栈 -->
+	<package name="learning-default" extends="struts-default" abstract="true">
+		<!-- 拦截器配置 -->
+		<interceptors>
+			<!-- 自定义的异常和执行时间拦截器，会把异常信息和执行时间过长的action的信息记录到日志里 -->
+			<interceptor name="exceptionAndExecuteTimeInterceptor" class="com.marsyoung.learning.web.ssb.filter.ExceptionAndExecuteTimeInterceptor">
+			</interceptor> 
+			<!-- 定义默认拦截器栈 -->
+			<interceptor-stack name="learning-stack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="exceptionAndExecuteTimeInterceptor"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="learning-stack"/>
+		<!-- 全局 results配置 -->
+		<global-results>
+			<result name="success">/jsp/global/json.jsp</result>
+			<result name="exception">/jsp/global/404.jsp</result>
+			<result name="input">/jsp/global/json.jsp</result>
+		</global-results>
+	</package>
+	<package name="demo1" extends="learning-default" namespace="/demo1">
+		<action name="*" class="demoAction1" method="{1}"/>
+	</package>
+	<package name="demo2" extends="learning-default" namespace="/demo2">
+		<action name="*" class="demoAction2" method="{1}"/>
+	</package>
+	<package name="demo3" extends="learning-default" namespace="/demo3">
+		<action name="*" class="demoAction3" method="{1}"/>
+	</package>
+</struts>
