@@ -57,6 +57,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
+		<!-- spring事务 的时候需要用到spring-orm -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>

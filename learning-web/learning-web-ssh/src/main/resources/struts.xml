@@ -11,7 +11,7 @@
 		<!-- 拦截器配置 -->
 		<interceptors>
 			<!-- 自定义的异常和执行时间拦截器，会把异常信息和执行时间过长的action的信息记录到日志里 -->
-			<interceptor name="exceptionAndExecuteTimeInterceptor" class="com.marsyoung.learning.web.ssb.filter.ExceptionAndExecuteTimeInterceptor">
+			<interceptor name="exceptionAndExecuteTimeInterceptor" class="com.marsyoung.learning.web.ssh.filter.ExceptionAndExecuteTimeInterceptor">
 			</interceptor> 
 			<!-- 定义默认拦截器栈 -->
 			<interceptor-stack name="learning-stack">
