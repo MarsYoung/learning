@@ -15,7 +15,7 @@ public class DemoAction extends BaseAction {
 	@RequestMapping(value = "/selectUser", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView selectUser(HttpServletRequest request, HttpServletResponse response){
-		ModelAndView mv = new ModelAndView("/jsp/selectUser");
+		ModelAndView mv = new ModelAndView("/view/demo");
 		mv.addObject("Result","OK");
 		mv.addObject("Message","获取成功");
 		return mv;
