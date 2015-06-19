@@ -1,8 +1,7 @@
 package com.marsyoung.learning.web.resteasy.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -11,18 +10,23 @@ import org.springframework.stereotype.Controller;
 
 import com.marsyoung.learning.web.resteasy.entity.User;
 
-
 @Path("/demo")
-@Produces(MediaType.APPLICATION_JSON)
 @Controller
 public class RestDemo {
 
+	@GET
 	@Path("/getUser")
-	public Map<String,Object> getUser(){
-		User u=new User();
-		Map<String,Object> m= new HashMap<String,Object>();
-		m.put("user", u);
-		return m;
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getUser() {
+		User u = new User();
+		return u;
 	}
-	
+
+	@GET
+	@Path("/createUser")
+	@Produces(MediaType.APPLICATION_XML)
+	public User createUser() {
+		return new User();
+	}
+
 }

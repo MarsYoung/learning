@@ -17,4 +17,6 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
 		location="classpath*:application.properties" />
 
 	<context:component-scan base-package="com.marsyoung.learning" />
+
+	<bean class="com.marsyoung.learning.web.resteasy.runner.SpringApplicationContext"></bean>
 </beans>
