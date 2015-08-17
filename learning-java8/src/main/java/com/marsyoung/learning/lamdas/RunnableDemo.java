@@ -1,7 +1,5 @@
 package com.marsyoung.learning.lamdas;
 
-import java.util.List;
-
 
 /**
  * 通过runnable启动新线程的写法
