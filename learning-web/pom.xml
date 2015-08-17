@@ -23,6 +23,64 @@
 
 	<build>
 		<finalName>learning-web</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat6-maven-plugin</artifactId>
+					<version>2.3-SNAPSHOT</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.3-SNAPSHOT</version>
+					<configuration>
+						<path>/</path>
+						<port>8080</port>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<warName>${project.artifactId}</warName>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+						<webResources>
+							<resource>
+								<!-- this is relative to the pom.xml directory -->
+								<directory>src/main/resources/</directory>
+								<targetPath>WEB-INF/classes</targetPath>
+								<includes>
+									<include>**/*.xml</include>
+									<include>**/*.properties</include>
+									<include>**/*.composite</include>
+								</includes>
+								<excludes>
+									<exclude>*dev/</exclude>
+									<exclude>*test/</exclude>
+									<exclude>*online/</exclude>
+								</excludes>
+								<filtering>true</filtering>
+							</resource>
+							<resource>
+								<!-- this is relative to the pom.xml directory -->
+								<directory>src/main/resources/${package.environment}</directory>
+								<targetPath>WEB-INF/classes</targetPath>
+								<includes>
+									<include>**/*.xml</include>
+									<include>**/*.properties</include>
+									<include>**/*.composite</include>
+								</includes>
+								<filtering>true</filtering>
+							</resource>
+						</webResources>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<dependencyManagement>
