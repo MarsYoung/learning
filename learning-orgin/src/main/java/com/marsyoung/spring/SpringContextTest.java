@@ -10,6 +10,7 @@ public class SpringContextTest {
 		
 	}
 	
+	@SuppressWarnings("resource")
 	public void loadSpringContext(){
 		new ClassPathXmlApplicationContext("spring/spring.xml");
 	}
