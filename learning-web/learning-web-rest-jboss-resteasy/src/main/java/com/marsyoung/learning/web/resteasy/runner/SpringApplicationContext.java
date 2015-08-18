@@ -1,4 +1,4 @@
-package com.marsyoung.learning.web.resteasy.runner;
+/*package com.marsyoung.learning.web.resteasy.runner;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -23,3 +23,4 @@ public class SpringApplicationContext implements ApplicationContextAware {
 	}
 
 }
+*/

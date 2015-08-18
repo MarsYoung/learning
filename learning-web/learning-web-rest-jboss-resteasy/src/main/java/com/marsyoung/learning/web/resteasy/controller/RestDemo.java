@@ -19,6 +19,8 @@ public class RestDemo {
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUser() {
 		User u = new User();
+		u.setUsername("jboss-resteasy");
+		u.setSex(true);
 		return u;
 	}
 

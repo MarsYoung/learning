@@ -1,4 +1,4 @@
-package com.marsyoung.learning.web.resteasy.runner;
+/*package com.marsyoung.learning.web.resteasy.runner;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,3 +24,4 @@ public class MarsYoungApplication extends Application{
 			return singletons;
 		}
 }
+*/
