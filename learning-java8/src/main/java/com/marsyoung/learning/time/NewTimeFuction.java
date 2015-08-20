@@ -47,6 +47,8 @@ public class NewTimeFuction {
 		ntf.durationDemo();
 		ntf.periodDemo();
 		ntf.dateTimeFormatterDemo();
+		
+		ntf.getTodayAndTheLastDayOfTheMonth();
 	}
 	
 	void localDateDemo(){
@@ -109,5 +111,12 @@ public class NewTimeFuction {
 		DateTimeFormatter dtf=DateTimeFormatter.ofPattern("uuuu-MM-dd");
 		LocalDate date = LocalDate.parse("2015-08-17", dtf);
 		System.out.println(date);
+	}
+	
+	void getTodayAndTheLastDayOfTheMonth(){
+		LocalDate now=LocalDate.now();
+		System.out.println(now.lengthOfMonth()-now.getDayOfMonth());;
+		
+		LocalDateTime now1=LocalDateTime.now();
 	}
 }
