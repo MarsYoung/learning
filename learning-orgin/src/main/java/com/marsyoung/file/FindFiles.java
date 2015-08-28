@@ -5,14 +5,10 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.swing.JFrame;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
-public class FindFiles extends JFrame{
-
-	private static final long serialVersionUID = 2478959312617723890L;
+public class FindFiles{
 
 	void find(Set<File> files, String path, String keyWord) {
 		File currentDir=new File(path);
