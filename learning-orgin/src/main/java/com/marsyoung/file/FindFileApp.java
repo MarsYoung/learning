@@ -7,7 +7,9 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -15,6 +17,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class FindFileApp extends JFrame implements ActionListener {
 
@@ -90,6 +95,32 @@ public class FindFileApp extends JFrame implements ActionListener {
 		int result = fileDirectoryChooser.showDialog(new JLabel(), "选择");
 		if (result == JFileChooser.APPROVE_OPTION) {
 			fileDirectoryText.setText(fileDirectoryChooser.getSelectedFile().getAbsolutePath());
+		}
+	}
+	
+	void find(Set<File> files, String path, String keyWord) {
+		File currentDir=new File(path);
+		if (!currentDir.exists())
+			return;
+		File[] subfiles = currentDir.listFiles();
+		if (subfiles != null) {
+			for (File file : subfiles) {
+				// 如果是文件夹，则继续遍历
+				find(files, file.getAbsolutePath(), keyWord);
+				// 如果是文件则判断是否符合keyWord
+				if (FileUtils.getFile(file.getAbsolutePath()).isFile()) {
+					try {
+						FileUtils.readLines(file).forEach(st->{
+							if(StringUtils.contains(st, keyWord)){
+								files.add(file);
+								consoleArea.append(file.getAbsolutePath()+"\n");
+							}
+						});
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 	}
 }
