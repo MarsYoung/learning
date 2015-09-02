@@ -84,7 +84,7 @@ public class FindFileApp extends JFrame implements ActionListener {
 			chooseFileDirectory();
 		} else if (keywordText.getText().equals("")) {
 		} else {
-			new FindFiles().find(new HashSet<File>(), fileDirectoryText.getText(), keywordText.getText());
+			find(new HashSet<File>(), fileDirectoryText.getText(), keywordText.getText());
 		}
 
 	}
