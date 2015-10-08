@@ -6,12 +6,12 @@ import java.util.List;
 public class WhyUseLamdas1 {
 
 	public void test(){
-		String x;
+	//	String x;
 		List<String> list=Arrays.asList("a","b","c","d");
 		
 		list.forEach(n->{
-			if(n.equals("d"))
-			x="match the value";
+			//if(n.equals("d"))
+			//x="match the value";
 		});
 	}
 }
