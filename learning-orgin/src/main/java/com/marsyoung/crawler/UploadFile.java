@@ -3,11 +3,18 @@ package com.marsyoung.crawler;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -17,6 +24,11 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.params.ConnRoutePNames;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
@@ -182,18 +194,23 @@ public class UploadFile {
 	 */
 	public HttpClient getLoginHttpClient() throws UnsupportedEncodingException{
 		if(httpClient==null){
-			HttpClient client = new DefaultHttpClient();
+			try {
+				httpClient = new SSLClient();
+			} catch (Exception e1) {
+				log.error("新建https连接失败:{}",e1);
+			}
+			httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,
+					new HttpHost("127.0.0.1", 8888)); 
 			HttpPost post = new HttpPost("https://crm.xiaoshouyi.com/global/do-login.action");
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-			nvps.add(new BasicNameValuePair("loginName", "xxx@taochedao.cn"));
-			nvps.add(new BasicNameValuePair("password", "xxx"));
+			nvps.add(new BasicNameValuePair("loginName", "xxxx@taochedao.cn"));
+			nvps.add(new BasicNameValuePair("password", "xxxx"));
 			nvps.add(new BasicNameValuePair("graphCode", ""));
 			nvps.add(new BasicNameValuePair("sessionID", ""));
 			post.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
 			try {
-				String resp= UploadFile.getInstance().getReturnStr(client, post, null);
+				String resp= UploadFile.getInstance().getReturnStr(httpClient, post, null);
 				if(JSONObject.parseObject(resp).getString("statusText").equals("成功")){
-					setHttpClient(client);
 					return httpClient;
 				}else{
 					log.info("获取登录状态的httpclient失败：{}",resp);
@@ -239,6 +256,34 @@ public class UploadFile {
 		} finally {
 			httpRequestBase.abort();
 		}
+	}
+	
+	
+	//用于进行Https请求的HttpClient  
+	class SSLClient extends DefaultHttpClient{  
+	    public SSLClient() throws Exception{  
+	        super();  
+	        SSLContext ctx = SSLContext.getInstance("TLS");  
+	        X509TrustManager tm = new X509TrustManager() {  
+	                @Override  
+	                public void checkClientTrusted(X509Certificate[] chain,  
+	                        String authType) throws CertificateException {  
+	                }  
+	                @Override  
+	                public void checkServerTrusted(X509Certificate[] chain,  
+	                        String authType) throws CertificateException {  
+	                }  
+	                @Override  
+	                public X509Certificate[] getAcceptedIssuers() {  
+	                    return null;  
+	                }  
+	        };  
+	        ctx.init(null, new TrustManager[]{tm}, null);  
+	        SSLSocketFactory ssf = new SSLSocketFactory(ctx,SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);  
+	        ClientConnectionManager ccm = this.getConnectionManager();  
+	        SchemeRegistry sr = ccm.getSchemeRegistry();  
+	        sr.register(new Scheme("https", 443, ssf));  
+	    }  
 	}
 	
 	public static void main(String[] args) {
