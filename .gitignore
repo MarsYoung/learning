@@ -25,3 +25,4 @@ logs
 train.properties
 train.properties.lock
 train.properties train.properties.lock
+learning-java8/target/
