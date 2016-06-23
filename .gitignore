@@ -17,3 +17,11 @@ learning-web/target
 learning-origin/target
 learning-java8/target
 learning-base/target
+.DS_Store
+learning-java8/src/.DS_Store learning-web/learning-web-rest-jboss-resteasy/.DS_Store
+learning-java8/.DS_Store
+learning-java8/src/main/.DS_Store
+logs
+train.properties
+train.properties.lock
+train.properties train.properties.lock
