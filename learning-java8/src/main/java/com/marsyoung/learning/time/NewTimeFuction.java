@@ -10,6 +10,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * 
@@ -47,7 +48,7 @@ public class NewTimeFuction {
 		ntf.durationDemo();
 		ntf.periodDemo();
 		ntf.dateTimeFormatterDemo();
-		
+
 		ntf.getTodayAndTheLastDayOfTheMonth();
 	}
 	
