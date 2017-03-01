@@ -1,5 +1,7 @@
 package com.marsyoung.learning.java8;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -25,13 +27,22 @@ public class Test {
 //            check(x,s);
 //        }
 
-
+    check(1,"");
     }
 
     static void  check(int intV,String sV){
-        System.out.println(Double.valueOf(sV).doubleValue()*100);
-        System.out.println(Double.valueOf(sV).doubleValue()*100!=intV);
-        System.out.println(new BigDecimal(sV).multiply(new BigDecimal("100")).doubleValue()!=intV);
+//        System.out.println(Double.valueOf(sV).doubleValue()*100);
+//        System.out.println(Double.valueOf(sV).doubleValue()*100!=intV);
+//        System.out.println(new BigDecimal(sV).multiply(new BigDecimal("100")).doubleValue()!=intV);
 
+        JSONObject json1=new JSONObject();
+        json1.put("mars",1);
+        json1.put("young",2);
+        JSONObject json2=new JSONObject();
+        json2.put("mars",1);
+        json2.put("young",2);
+        String x="{\"young\":2,\"mars\":1}";
+        System.out.println(x.equals(json1.toJSONString()));
+        System.out.println(json1.toJSONString().equals(json2.toJSONString()));
     }
 }
