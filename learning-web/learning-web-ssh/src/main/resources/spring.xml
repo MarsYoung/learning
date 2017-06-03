@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
@@ -7,46 +8,97 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	http://www.springframework.org/schema/aop
- 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+ 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+ 	http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx.xsd "
 	xmlns:context="http://www.springframework.org/schema/context"
 	default-autowire="byName">
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<!-- <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" 
+			/> <property name="ignoreResourceNotFound" value="false" /> -->
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
 
 	<!-- 连接traffic数据库数据源配置 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost:3306/learning?useUnicode=true&amp;characterEncoding=UTF-8" />
-		<property name="user" value="learning" />
-		<property name="password" value="learning" />
-		<property name="acquireIncrement" value="2" />
-		<property name="initialPoolSize" value="10" />
-		<property name="minPoolSize" value="5" />
-		<property name="maxPoolSize" value="30" />
-		<property name="idleConnectionTestPeriod" value="1800" />
-		<property name="preferredTestQuery" value="select 1" />
-		<property name="acquireRetryAttempts" value="10" />
-		<property name="acquireRetryDelay" value="300" />
-		<property name="checkoutTimeout" value="3000" />
-		<property name="maxIdleTime" value="600" />
-		<property name="maxStatementsPerConnection" value="500" />
-		<property name="numHelperThreads" value="5" />
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
+		<property name="initialPoolSize" value="${jdbc.initialPoolSize}" />
+		<property name="minPoolSize" value="${jdbc.minPoolSize}" />
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+		<property name="maxIdleTime" value="${jdbc.maxIdleTime}" />
+		<property name="maxStatements" value="${jdbc.maxStatements}" />
+		<property name="numHelperThreads" value="${jdbc.numHelperThreads}" />
+		<property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}" />
 	</bean>
 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="typeAliasesPackage"
-			value="com.marsyoung.learning.web.ssb.entity" />
-		<property name="configLocation" value="classpath:mybatis.xml" />
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<!-- 配置一个文件下的所有的hibernate 的mappingresource -->
+		<property name="mappingDirectoryLocations" value="classpath:com/marsyoung/learning/web/ssh/entity/" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+				<!--  <prop key="hibernate.current_session_context_class">thread</prop>-->
+			</props>
+		</property>
 	</bean>
 
-	<!-- 将basePackage中配置的包路径下的 dao接口生成代理，替代我们原来的 dao实现 -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.marsyoung.learning.web.ssb.mapper" />
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="txManager" />
+	<!-- Transaction Manager is defined -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
+
+	<!-- 设置事务的传播特性 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="merge*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="put*" propagation="REQUIRED" />
+			<tx:method name="use*" propagation="REQUIRED" />
+			<!--hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到 -->
+			<tx:method name="get*" propagation="REQUIRED" />
+			<tx:method name="count*" propagation="REQUIRED" />
+			<tx:method name="find*" propagation="REQUIRED"/>
+			<tx:method name="list*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config proxy-target-class="true">
+		<!-- 只对业务逻辑层实施事务 -->
+		<aop:pointcut id="txPointcut"
+			expression="execution(* com.marsyoung.learning.web.ssh.dao.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
+
 	<!-- aop配置,一句话,其它通过annotation -->
 	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
-	<!-- 通过注解加载action和spring-->
+	<!-- 通过注解加载action和spring -->
 	<context:component-scan base-package="com.marsyoung"></context:component-scan>
-	
+
 </beans>

@@ -16,7 +16,7 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost:3306/learning?useUnicode=true&amp;characterEncoding=UTF-8" />
+			value="jdbc:mysql://learning.local:3306/learning?useUnicode=true&amp;characterEncoding=UTF-8" />
 		<property name="user" value="learning" />
 		<property name="password" value="learning" />
 		<property name="acquireIncrement" value="2" />
@@ -47,6 +47,6 @@
 	<!-- aop配置,一句话,其它通过annotation -->
 	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 	<!-- 通过注解加载action和spring-->
-	<context:component-scan base-package="com.marsyoung"></context:component-scan>
+	<context:component-scan base-package="com.marsyoung.learning.web"></context:component-scan>
 	
 </beans>

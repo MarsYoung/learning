@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<decorators defaultdir="/WEB-INF/view/decorators/">
+ <excludes> 
+ 	<pattern>/*isblank=true*</pattern>
+ </excludes>
+	<decorator name="main" page="decorator.ftl">
+		<pattern>*.do</pattern>
+	</decorator>
+</decorators>

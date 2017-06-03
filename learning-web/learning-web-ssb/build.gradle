@@ -1,0 +1,22 @@
+
+apply plugin: 'war'
+
+description = 'learning-web-ssb Maven Webapp'
+dependencies {
+    compile group: 'org.apache.struts', name: 'struts2-core', version:'2.3.4.1'
+    compile group: 'org.apache.struts', name: 'struts2-spring-plugin', version:'2.3.14'
+    compile group: 'org.apache.struts', name: 'struts2-json-plugin', version:'2.3.20'
+    compile group: 'org.springframework', name: 'spring-context', version:'3.1.2.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version:'3.1.2.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context-support', version:'3.1.2.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jdbc', version:'3.1.2.RELEASE'
+    compile group: 'cglib', name: 'cglib', version:'3.1'
+    compile group: 'org.aspectj', name: 'aspectjrt', version:'1.6.11'
+    compile group: 'org.aspectj', name: 'aspectjweaver', version:'1.6.11'
+    compile group: 'org.mybatis', name: 'mybatis', version:'3.3.0'
+    compile group: 'org.mybatis', name: 'mybatis-spring', version:'1.2.3'
+    compile group: 'mysql', name: 'mysql-connector-java', version:'5.1.21'
+    compile group: 'c3p0', name: 'c3p0', version:'0.9.1.1'
+    compile group: 'log4j', name: 'log4j', version:'1.2.16'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
+}

@@ -16,7 +16,11 @@ learning---->父项目
 	
 		learning-web-springboot ----->
 	
+<<<<<<< HEAD
 		learning-web-rest-jboss-resteasy----> 参考了http://www.mkyong.com/ 上面的示例
+=======
+		learning-web-rest-jboss-resteasy---->参考了http://www.mkyong.com/上面的示例
+>>>>>>> release/v1706
 
 		learning-web-rest-jersey-resteasy---->
 	
@@ -24,4 +28,12 @@ learning---->父项目
 
 	learning-dubbox
 
-	
+
+项目进度：
+1.learning-web-ssb框架搭建完毕
+
+2.learning-web-ssh框架搭建完毕
+
+3.learning-web-springmvc+freemarker框架搭建完成
+
+4.
