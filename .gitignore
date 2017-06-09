@@ -29,3 +29,4 @@ learning-java8/target/
 out
 project
 .gradle/
+learning-web/learning-web-rest-jboss-resteasy/build learning-web/learning-web-springmvc/build learning-web/learning-web-ssb/build learning-web/learning-web-ssh/build
