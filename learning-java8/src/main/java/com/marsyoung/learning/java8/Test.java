@@ -21,8 +21,18 @@ public class Test {
 //            check(x,s);
 //        }
 
-    check(1,"");
+//    check(1,"");
+        int a=1;
+        int b=2;
+        if(a==1){
+            System.out.println("111111");
+        }else if(b==2){
+            System.out.println("222222");
+        }else{
+            System.out.println("333333");
+        }
     }
+
 
     static void  check(int intV,String sV){
 //        System.out.println(Double.valueOf(sV).doubleValue()*100);
