@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30">
+	<Properties>
+		<Property name="pattern">%d{yyyy-MM-dd HH:mm:ss} %-5p %X{traceId} %c{2}:%L - %m%n</Property>
+		<Property name="filename">./logs/learning.log</Property>
+		<Property name="filegz">./logs/learning.log.%d{yyyy-MM-dd}.gz</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<ThresholdFilter level="info" onMatch="ACCEPT"
+							 onMismatch="DENY" />
+			<PatternLayout pattern="${pattern}" />
+		</Console>
+		<RollingRandomAccessFile name="RollingFile" fileName="${filename}"
+								 filePattern="${filegz}">
+			<PatternLayout pattern="${pattern}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+										   modulate="true" />
+			</Policies>
+		</RollingRandomAccessFile>
+
+		<RollingRandomAccessFile name="RollingErrorFile" fileName="./logs/error.log"
+								 filePattern="./logs/error.log.%d{yyyy-MM-dd}">
+			<PatternLayout pattern="${pattern}" />
+			<ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+										   modulate="true" />
+			</Policies>
+		</RollingRandomAccessFile>
+
+	</Appenders>
+
+	<Loggers>
+		<AsyncRoot level="info" includeLocation="true">
+			<appender-ref ref="RollingFile" />
+			<appender-ref ref="Console" />
+			<appender-ref ref="RollingErrorFile" />
+		</AsyncRoot>
+	</Loggers>
+
+</Configuration>
