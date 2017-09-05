@@ -26,7 +26,8 @@
 		<module>learning-orgin</module>
 		<module>learning-web</module>
 		<module>learning-java8</module>
-	</modules>
+        <module>network</module>
+    </modules>
 
 	<build>
 		<pluginManagement>
