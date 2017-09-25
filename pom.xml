@@ -27,6 +27,7 @@
 		<module>learning-web</module>
 		<module>learning-java8</module>
         <module>network</module>
+        <module>learning-java9</module>
     </modules>
 
 	<build>
