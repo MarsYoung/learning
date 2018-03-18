@@ -1,0 +1,14 @@
+
+apply plugin: 'war'
+
+description = ''
+dependencies {
+    compile group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version:'3.0.7.Final'
+    compile group: 'org.jboss.resteasy', name: 'resteasy-jackson-provider', version:'3.0.7.Final'
+    compile group: 'org.jboss.resteasy', name: 'resteasy-jaxb-provider', version:'3.0.7.Final'
+    compile group: 'org.jboss.resteasy', name: 'resteasy-spring', version:'3.0.7.Final'
+    compile group: 'org.springframework', name: 'spring-core', version:'4.2.0.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version:'4.2.0.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version:'4.2.0.RELEASE'
+    compile group: 'commons-logging', name: 'commons-logging', version:'1.2'
+}

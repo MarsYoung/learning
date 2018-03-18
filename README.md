@@ -16,7 +16,11 @@ learning---->父项目
 	
 		learning-web-springboot ----->
 	
+<<<<<<< HEAD
+		learning-web-rest-jboss-resteasy----> 参考了http://www.mkyong.com/ 上面的示例
+=======
 		learning-web-rest-jboss-resteasy---->参考了http://www.mkyong.com/上面的示例
+>>>>>>> release/v1706
 
 		learning-web-rest-jersey-resteasy---->
 	

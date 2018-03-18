@@ -1,0 +1,20 @@
+rootProject.name = 'learning'
+include ':learning-base'
+include ':learning-orgin'
+include ':learning-web:learning-web-ssb'
+include ':learning-web:learning-web-springmvc'
+include ':learning-web:learning-web-ssh'
+include ':learning-web:learning-web-rest-jersey-resteasy'
+include ':learning-web:learning-web-rest-jboss-resteasy'
+include ':learning-web'
+include ':learning-java8'
+
+project(':learning-base').projectDir = "$rootDir/learning-base" as File
+project(':learning-orgin').projectDir = "$rootDir/learning-orgin" as File
+project(':learning-web:learning-web-ssb').projectDir = "$rootDir/learning-web/learning-web-ssb" as File
+project(':learning-web:learning-web-springmvc').projectDir = "$rootDir/learning-web/learning-web-springmvc" as File
+project(':learning-web:learning-web-ssh').projectDir = "$rootDir/learning-web/learning-web-ssh" as File
+project(':learning-web:learning-web-rest-jersey-resteasy').projectDir = "$rootDir/learning-web/learning-web-rest-jersey-resteasy" as File
+project(':learning-web:learning-web-rest-jboss-resteasy').projectDir = "$rootDir/learning-web/learning-web-rest-jboss-resteasy" as File
+project(':learning-web').projectDir = "$rootDir/learning-web" as File
+project(':learning-java8').projectDir = "$rootDir/learning-java8" as File
