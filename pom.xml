@@ -26,6 +26,7 @@
 		<module>learning-orgin</module>
 		<module>learning-web</module>
 		<module>learning-java8</module>
+		<module>learning-transaction</module>
 	</modules>
 
 	<build>
