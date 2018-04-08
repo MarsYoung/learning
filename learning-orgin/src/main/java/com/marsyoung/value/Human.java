@@ -2,17 +2,15 @@ package com.marsyoung.value;
 
 public abstract class Human {
 
-    int occupation;
+    protected int occupation;
 
-    public void doWork(){
+    public int getOccupation(){
+        return occupation;
+    }
 
-        if(occupation==1){
-            System.out.println("i am 1");
-        }else if(occupation==2){
-            System.out.println("2");
-        }else{
-            System.out.println("not recognize");
-        }
+    public void doWork() {
+        System.out.println("occupation is " + occupation);
+        System.out.println(getOccupation());
     }
 
 }

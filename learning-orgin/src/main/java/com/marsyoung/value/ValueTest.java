@@ -5,6 +5,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Map;
 
+/*
+*
+* */
+
 public class ValueTest {
 
     public static void main(String[] args) {
@@ -16,6 +20,9 @@ public class ValueTest {
                     bean.getValue().doWork();
                 }
         );
+        System.out.println("start test for new a class");
+        Doctor doctor =new Doctor();
+        doctor.doWork();
     }
 
 }

@@ -19,5 +19,4 @@
         <property name="connectionFactory"   ref="connectionFactory" />  
     </bean>         
      
-    <bean id="userDao" class="com.marsyoung.redis.impl.UserDao" />   
-</beans>  
+</beans>

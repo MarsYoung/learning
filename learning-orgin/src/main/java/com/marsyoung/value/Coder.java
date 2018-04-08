@@ -8,4 +8,9 @@ public class Coder extends Human{
 
     @Value("2")
     int occupation;
+
+    @Override
+    public int getOccupation() {
+        return this.occupation;
+    }
 }

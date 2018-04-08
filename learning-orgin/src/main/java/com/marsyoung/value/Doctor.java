@@ -9,5 +9,8 @@ public class Doctor extends Human {
     @Value("1")
     int occupation;
 
-
+    @Override
+    public int getOccupation() {
+        return super.occupation;
+    }
 }

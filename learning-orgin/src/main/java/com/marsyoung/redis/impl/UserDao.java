@@ -1,18 +1,19 @@
 package com.marsyoung.redis.impl;
 
-import java.util.ArrayList;  
-import java.util.List;  
-
-import org.springframework.dao.DataAccessException;  
-import org.springframework.data.redis.connection.RedisConnection;  
-import org.springframework.data.redis.core.RedisCallback;  
-import org.springframework.data.redis.serializer.RedisSerializer;  
-import org.springframework.util.Assert;  
-
 import com.marsyoung.entity.User;
 import com.marsyoung.redis.AbstractBaseRedisDao;
 import com.marsyoung.redis.IUserDao;
-  
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
 public class UserDao extends AbstractBaseRedisDao<String, User> implements IUserDao {  
   
     /**  

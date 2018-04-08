@@ -12,6 +12,6 @@ public class SpringContextTest {
 	
 	@SuppressWarnings("resource")
 	public void loadSpringContext(){
-		new ClassPathXmlApplicationContext("spring/spring.xml");
+		new ClassPathXmlApplicationContext(new String[]{"spring/spring.xml","spring/spring-redis.xml"});
 	}
 }
